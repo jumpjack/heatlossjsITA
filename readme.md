@@ -19,6 +19,8 @@ File dei gradi-giorno per l'Italia: [link](https://github.com/jumpjack/heatlossj
 
 Il tool si basa anche sulla "**temperatura convenzionale**" del luogo in cui si trova la casa; nel tool originale era fissata a -3°C per Londra;  i valori per le varie città italiane sono elencati in questo [file](https://github.com/jumpjack/heatlossjsITA/blob/master/temp-IT.txt) ([fonte: Decreto del Presidente della Repubblica 1052/1977, allegato 1](https://www.gazzettaufficiale.it/eli/id/1978/02/06/077U1052/sg)).
 
+Query Openstreetmap per ricavare coordinate geografiche dal nome di un comune (necessita [APIKEY personale](https://www.geoapify.com/openstreetmap-geocoding)): https://api.geoapify.com/v1/geocode/search?text=COMUNE&type=city&format=json&apiKey=APIKEY 
+
 La Temperatura interna si pone uguale a 20 °C (D.P.R. 412/1993).
 
 Il caolcolo per una stanza viene suddiviso nei calcoli per le singole pareti; le formule utlizzate per i calcoli di ogni parete sono le seguenti:
