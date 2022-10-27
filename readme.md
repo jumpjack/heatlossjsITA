@@ -32,14 +32,14 @@ Il tool si basa anche sulla "temperatura convenzionale" del luogo in cui si trov
 - Torino -8 °C
 - Venezia -5 °C
 
-La Temperatura interna si pone uguale a 20 °C (D.P.R. 412/1993)
+La Temperatura interna si pone uguale a 20 °C (D.P.R. 412/1993).
 
 Il caolcolo per una stanza viene suddiviso nei calcoli per le singole pareti; le formule utlizzate per i calcoli di ogni parete sono le seguenti:
 
  - `uvalue = XXXXXXXX                      ` // Trasmittanza della parete in esame:                               **[W/m2K]** = [W/K] / [m2]   = Potenza/DeltaT  /  m2
  - `deltaT = roomTemperature - temperature  ` // Differenza tra temperatura della stanza in esame e quella della stanza al di là della parete in esame
- - `powerW = A * uvalue * deltaT            ` // Potenza termica dispersa (power heat loss), in Watt:              [m2] * [W/m2K] *  [K] = **[W]**
- - `energyWh = A * uvalue * degreedays * 24 ` // Energia necessaria in un giorno, in Wh:                           [m2]  * [W/m2K] * [K] * [giorni] * [ore/giorno] = **[Wh]**
+ - `powerW = A * uvalue * deltaT            ` // Potenza termica istantanea dispersa (power heat loss), in Watt:   [m2] * [W/m2K] *  [K] = **[W]**
+ - `energyWh = A * uvalue * degreedays * 24 ` // Energia necessaria **in un anno**, in Wh:                         [m2]  * [W/m2K] * [K] * [giorni] * [ore/giorno] = **[Wh]**
 
 -----------------------
 
