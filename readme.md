@@ -2,9 +2,12 @@
 
 Calcolatore di dispersione di calore di edifici - localizzazione in italiano e predisposizione per altre lingue.
 
-Riferimento per valori di trasmittanza (U-value) di vari tippi di muri: https://mcscertified.com/wp-content/uploads/2020/04/Guidance-on-U-Values-from-Domestic-Heating-Design-Guide.pdf  (disponibile anche [qui nel repository](https://github.com/jumpjack/heatlossjsITA/blob/master/Guidance-on-U-Values-from-Domestic-Heating-Design-Guide.pdf)).
-
 Il tool permette di calcolare quanti kW di energia vengono emessi da ogni stanza verso l'esterno, e quindi quanta potenza riscaldante è necessaria per mantenere una casa alla temperatura deisderata, e quanta energia si consuma in un anno per farlo.
+
+------------
+
+Riferimento per **valori di trasmittanza** (U-value) di vari tipi di muri: https://mcscertified.com/wp-content/uploads/2020/04/Guidance-on-U-Values-from-Domestic-Heating-Design-Guide.pdf  (disponibile anche [qui nel repository](https://github.com/jumpjack/heatlossjsITA/blob/master/Guidance-on-U-Values-from-Domestic-Heating-Design-Guide.pdf)).
+
 
 Quantità usate nei calcoli:
  - U-value (trasmittanza): capacità di una parete di trasmettere il calore; espressa in W/m2K
