@@ -10,12 +10,13 @@ Quantità usate nei calcoli:
  - U-value (trasmittanza): capacità di una parete di trasmettere il calore; espressa in W/m2K
  - [degreedays](https://degreedays.net) ("gradi-giorno): un "grado-giorno" (°D) è la differenza di temperatura tra esterno e interno della casa; sommando i "gradi-giorno" di ogni giorno dell'anno, si ottengono i "gradi-giorno annuali"
 
-In base ai gradi-giorno calcolati per ogni località, formalizzati nel [decreto 412 del 1993](https://www.gazzettaufficiale.it/eli/id/1993/10/14/093G0451/sg,  l'Italia è stata suddivisa in 6 zone climatiche:
+In base ai gradi-giorno calcolati per ogni località, formalizzati nel [decreto 412 del 1993](https://www.gazzettaufficiale.it/eli/id/1993/10/14/093G0451/sg) ,  l'Italia è stata suddivisa in 6 zone climatiche:
 ![image](https://user-images.githubusercontent.com/1620953/198236792-39a431a7-3d4d-4e30-aa0a-a452c43c81ef.png)
 (fonte: [www.certifico.com](https://www.certifico.com/categorie/337-impianti/documenti-impianti/documenti-impianti-riservati/7099-zone-climatiche-tabella-a-aggiornata-d-p-r-412-1993))
 
+File dei gradi-giorno per l'Italia: [link](https://github.com/jumpjack/heatlossjsITA/blob/master/gradigiorno.txt)
 
-Il tool si basa anche sulla "temperatura convenzionale" del luogo in cui si trova la casa; nel tool originale era fissata a -3°C per Londra; questi sono invece i valori per le varie città italiane, in ordine alfabetico ([fonte: Decreto del Presidente della Repubblica 1052/1977, allegato 1](https://www.gazzettaufficiale.it/eli/id/1978/02/06/077U1052/sg)):
+Il tool si basa anche sulla "temperatura convenzionale" del luogo in cui si trova la casa; nel tool originale era fissata a -3°C per Londra; questi sono invece i valori per le varie città italiane ([fonte: Decreto del Presidente della Repubblica 1052/1977, allegato 1](https://www.gazzettaufficiale.it/eli/id/1978/02/06/077U1052/sg)) ([file](https://github.com/jumpjack/heatlossjsITA/blob/master/temp-IT.txt)):
 
 ```
 Torino                       -8
