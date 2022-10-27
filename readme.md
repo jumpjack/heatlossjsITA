@@ -1,5 +1,39 @@
 # HeatLossJS
 
+Calcolatore di dispersione di calore di edifici - localizzazione in italiano e predisposizione per altre lingue.
+
+Riferimento per valori di trasmittanza (U-value) di vari tippi di muri: https://mcscertified.com/wp-content/uploads/2020/04/Guidance-on-U-Values-from-Domestic-Heating-Design-Guide.pdf  (disponibile anche qui nel repository).
+
+Il tool permette di calcolare quanti kW di energia vengono emessi da ogni stanza verso l'esterno, e quindi quanta potenza riscaldante è necessaria per mantenere una casa alla temperatura deisderata, e quanta energia si consuma in un anno per farlo.
+
+Quantità usate nei calcoli:
+ - U-value (trasmittanza): capacità di una parete di trasmettere il calore; espressa in W/m2K
+ - [degreedays](https://degreedays.net) ("gradogiorni"?!?): un "gradogiorno" (°D) è la differenza di temperatura tra esterno e interno della casa; sommando i "gradogiorni" di ogni giorno dell'anno, si ottengono i "gradogiorni annuali"
+
+
+Il tool si basa anche sulla "temperatura convenzionale" del luogo in cui si trova la casa; nel tool originale era fissata a -3°C per Londra; questi sono i valori per le varie città italiane, in ordine alfabetico ([fonte](https://www.docenti.unina.it/webdocenti-be/allegati/materiale-didattico/667663)):
+
+- Bari 0 °C
+- Bologna -5 °C
+- Catania +5 °C
+- Firenze 0 °C
+- Foggia 0 °C
+- Genova 0 °C
+- Matera -2 °C
+- Milano -5 °C
+- Napoli +2 °C
+- Novara -5 °C
+- Perugia -2 °C
+- Potenza -3 °C
+- Reggio Calabria +3 °C
+- Roma 0 °C
+- Salerno +2 °C
+- Sondrio -10 °C
+- Torino -8 °C
+- Venezia -5 °C
+
+-----------------------
+
 A small open source room by room heat loss calculator
 
 ![heatlossjs.png](heatlossjs.png)
