@@ -5,25 +5,25 @@ var config = {
   heating_MWT: 40.0,
   heatpump_flow_rate: 9.0,
     
-  T: {
-    external: -3.0,
-    ground: 10.0,
-    unheated: 10.0
-  },
+  T:  localT, // Localized
 
-  element_type: {
-    "Floor:Ground": { uvalue:1.0 },
-    "Floor:InsulatedGround": { uvalue:0.32 },
-    "Floor:First": { uvalue:1.7 },
-    "Floor:Loft": { uvalue:0.18 },
-    "Wall:External": { uvalue:1.7 },
-    "Wall:Internal": { uvalue:1.7 },
-    "Wall:Party": { uvalue:0.5 },
-    "Glazing:Double": { uvalue:3.1 }
-  },
-  
-  rooms: {
-   "livingroom":{
+  element_type: localElementType, // localized
+
+
+	 orientationContribution : {
+	  S : 1.0,
+	  SW : 1.05,
+	  W: 1.1,
+	  NW: 1.15,
+	  N: 1.2,
+	  NE:  1.15,
+	  E:  1.1,
+	  SE: 1.05,
+	  not_appl : 1
+	 },
+
+    rooms: {
+   "soggiorno":{
       temperature: 21.0,
       width: 3.4, 
       length: 6.8, 
@@ -32,53 +32,53 @@ var config = {
    
       elements: [
         {
-          type:"Wall:External", 
-          orientation:"South", 
+          type:"Parete:esterna",
+          orientation:"S",
           width:3.4, height:2.4
         },
         { 
-          type:"Wall:Party", 
-          orientation:"West", 
+          type:"Parete:condivisa",
+          orientation:"W",
           width:6.8, height:2.4,
-          boundary:'unheated'
+          boundary:boundaryType["unheated"]
         },
         { 
-          type:"Wall:External", 
-          orientation:"North", 
+          type:"Parete:esterna",
+          orientation:"N",
           width:1.6, height:2.4
         },
         { 
-          type:"Wall:Internal", 
-          orientation:"East", 
+          type:"Parete:interna",
+          orientation:"E",
           width:6.8, height:2.4,
           boundary:'hall'
         },
         { 
-          type:"Floor:InsulatedGround", 
+          type:"Piano:terraIsolato",
           width:6.8, height:3.4,
-          boundary:'ground'
+          boundary:boundaryType["ground"]
         },
         { 
-          type:"Floor:First",
+          type:"Piano:Primo",
           width:6.8, height:3.4,
-          boundary:'bed2'
+          boundary:'CameraLetto2'
         },
         {
-          type:"Glazing:Double",
+          type:"Vetri:Doppi",
           subtractfrom:0,
           width:1.8, height:1.6
         },
         {
-          type:"Glazing:Double",
+          type:"Vetri:Doppi",
           subtractfrom:2,
           width:1.0, height:1.5
         }
       ],
 
       radiators: [
-          {name:"Double Panel Convector 1200x600",heat50k:2146},
-          {name:"Double Panel Convector 1200x600",heat50k:2146},
-          {name:"Double Panel Convector 1200x600",heat50k:2146}
+          {name:"Doppio pannello a convezione 1200x600",heat50k:2146},
+          {name:"Doppio pannello a convezione 1200x600",heat50k:2146},
+          {name:"Doppio pannello a convezione 1200x600",heat50k:2146}
       ]
     },
     
@@ -91,93 +91,93 @@ var config = {
       
       elements: [
         {
-          type:"Wall:External", 
-          orientation:"South", 
+          type:"Parete:esterna",
+          orientation:"S",
           width:1.0, height:2.4
         },
         { 
-          type:"Wall:Internal", 
-          orientation:"West", 
+          type:"Parete:interna",
+          orientation:"W",
           width:6.8, height:2.4,
-          boundary:'livingroom'
+          boundary:'soggiorno'
         },
         { 
-          type:"Wall:Internal", 
-          orientation:"North", 
+          type:"Parete:interna",
+          orientation:"N",
           width:1.0, height:2.4,
-          boundary:'livingroom'
+          boundary:'soggiorno'
         },
         { 
-          type:"Wall:Party", 
-          orientation:"East", 
+          type:"Parete:condivisa",
+          orientation:"E",
           width:6.8, height:2.4,
-          boundary:'unheated'
+          boundary:boundaryType["unheated"]
         },
         { 
-          type:"Floor:Ground", 
+          type:"Piano:terra",
           width:6.8, height:1.0,
-          boundary:'ground'
+          boundary:boundaryType["ground"]
         },
         { 
-          type:"Floor:First",
+          type:"Piano:Primo",
           width:6.8, height:1.0,
-          boundary:'study'
+          boundary:'studio'
         },
         {
-          type:"Glazing:Double",
+          type:"Vetri:Doppi",
           subtractfrom:0,
           width:0.8, height:1.9
         }
       ],
       
-      radiators: [{name:"Double Panel Convector 1200x600",heat50k:2146}]
+      radiators: [{name:"Doppio pannello a convezione 1200x600",heat50k:2146}]
     },
     
-   "kitchen":{
+   "cucina":{
       temperature: 18.0,
       width: 2.4, length: 3.0, height: 2.4,
       air_change_an_hour: 2.0,
       
       elements: [
         { 
-          type:"Wall:Internal", 
-          orientation:"South", 
+          type:"Parete:interna",
+          orientation:"S",
           width:2.4, height:2.4,
-          boundary:'livingroom'
+          boundary:'soggiorno'
         },
         { 
-          type:"Wall:External", 
-          orientation:"West", 
+          type:"Parete:esterna",
+          orientation:"W",
           width:3.0, height:2.4
         },
         { 
-          type:"Wall:External", 
-          orientation:"North", 
+          type:"Parete:esterna",
+          orientation:"N",
           width:2.4, height:2.4
         },
         { 
-          type:"Wall:Party", 
-          orientation:"East", 
+          type:"Parete:condivisa",
+          orientation:"E",
           width:3.0, height:2.4,
-          boundary:'unheated'
+          boundary:boundaryType["unheated"]
         },
         { 
-          type:"Floor:Ground", 
+          type:"Piano:terra",
           width:3.0, height:2.4,
-          boundary:'ground'
+          boundary:boundaryType["ground"]
         },
         { 
-          type:"Floor:First",
+          type:"Piano:Primo",
           width:3.0, height:2.4,
-          boundary:'bathroom'
+          boundary:'bagno'
         },
         {
-          type:"Glazing:Double",
+          type:"Vetri:Doppi",
           subtractfrom:1,
           width:0.9, height:1.3
         },
         {
-          type:"Glazing:Double",
+          type:"Vetri:Doppi",
           subtractfrom:1,
           width:0.8, height:1.9
         }
@@ -186,52 +186,52 @@ var config = {
       radiators: []
     },
     
-   "bed1":{
+   "CameraLetto1":{
       temperature: 18.0,
       width: 3.0, length: 3.5, height: 2.4,
       air_change_an_hour: 1.0,
       
       elements: [
         { 
-          type:"Wall:Internal", 
-          orientation:"South", 
+          type:"Parete:interna",
+          orientation:"S",
           width:3.0, height:2.4,
-          boundary:'bed2'
+          boundary:'CameraLetto2'
         },
         { 
-          type:"Wall:Party", 
-          orientation:"West", 
+          type:"Parete:condivisa",
+          orientation:"W",
           width:3.5, height:2.4,
-          boundary:'unheated'
+          boundary:boundaryType["unheated"]
         },
         { 
-          type:"Wall:External", 
-          orientation:"North", 
+          type:"Parete:esterna",
+          orientation:"N",
           width:1.6, height:2.4
         },
         { 
-          type:"Wall:Internal", 
-          orientation:"North", 
+          type:"Parete:interna",
+          orientation:"N",
           width:1.4, height:2.4,
-          boundary:'bathroom'
+          boundary:'bagno'
         },
         { 
-          type:"Wall:Internal", 
-          orientation:"East", 
+          type:"Parete:interna",
+          orientation:"E",
           width:3.5, height:2.4,
-          boundary:'landing'
+          boundary:'ingresso'
         },
         { 
-          type:"Floor:First", 
+          type:"Piano:Primo",
           width:3.0, height:3.5,
-          boundary:'livingroom'
+          boundary:'soggiorno'
         },
         { 
-          type:"Floor:Loft",
+          type:"Piano:Mansarda",
           width:3.0, height:3.5
         },
         {
-          type:"Glazing:Double",
+          type:"Vetri:Doppi",
           subtractfrom:2,
           width:0.9, height:1.3
         }
@@ -240,46 +240,46 @@ var config = {
       radiators: [{name:"Double Panel Convector 1200x500",heat50k:1834}]
     },
     
-   "bed2":{
+   "CameraLetto2":{
       temperature: 18.0,
       width: 2.6, length: 3.2, height: 2.4,
       air_change_an_hour: 1.0,
       
       elements: [
         { 
-          type:"Wall:External", 
-          orientation:"South", 
+          type:"Parete:esterna",
+          orientation:"S",
           width:2.6, height:2.4
         },
         { 
-          type:"Wall:Party", 
-          orientation:"West", 
+          type:"Parete:condivisa",
+          orientation:"W",
           width:3.2, height:2.4,
-          boundary:'unheated'
+          boundary:boundaryType["unheated"]
         },
         { 
-          type:"Wall:Internal", 
-          orientation:"North", 
+          type:"Parete:interna",
+          orientation:"N",
           width:2.6, height:2.4,
-          boundary:'bed1'
+          boundary:'CameraLetto1'
         },
         { 
-          type:"Wall:Internal", 
-          orientation:"East", 
+          type:"Parete:interna",
+          orientation:"E",
           width:3.2, height:2.4,
-          boundary:'landing'
+          boundary:'ingresso'
         },
         { 
-          type:"Floor:First", 
+          type:"Piano:Primo",
           width:2.6, height:3.2,
-          boundary:'livingroom'
+          boundary:'soggiorno'
         },
         { 
-          type:"Floor:Loft",
+          type:"Piano:Mansarda",
           width:2.6, height:3.2
         },
         {
-          type:"Glazing:Double",
+          type:"Vetri:Doppi",
           subtractfrom:"32",
           width:0.9, height:1.3
         }
@@ -288,46 +288,46 @@ var config = {
       radiators: [{name:"Double Panel Convector 1200x500",heat50k:1834}]
     },
     
-   "study":{
+   "studio":{
       temperature:21.0,
       width: 1.8, length: 2.2, height: 2.4,
       air_change_an_hour: 1.5,
       
       elements: [
         { 
-          type:"Wall:External", 
-          orientation:"South", 
+          type:"Parete:esterna",
+          orientation:"S",
           width:1.8, height:2.4
         },
         { 
-          type:"Wall:Internal", 
-          orientation:"West", 
+          type:"Parete:interna",
+          orientation:"W",
           width:2.2, height:2.4,
-          boundary:'bed2'
+          boundary:'CameraLetto2'
         },
         { 
-          type:"Wall:Internal", 
-          orientation:"North", 
+          type:"Parete:interna",
+          orientation:"N",
           width:1.8, height:2.4,
-          boundary:'bed1'
+          boundary:'CameraLetto1'
         },
         { 
-          type:"Wall:Party", 
-          orientation:"East", 
+          type:"Parete:condivisa",
+          orientation:"E",
           width:2.2, height:2.4,
-          boundary:'unheated'
+          boundary:boundaryType["unheated"]
         },
         { 
-          type:"Floor:First", 
+          type:"Piano:Primo",
           width:1.8, height:2.2,
-          boundary:'livingroom'
+          boundary:'soggiorno'
         },
         { 
-          type:"Floor:Loft",
+          type:"Piano:Mansarda",
           width:1.8, height:2.2
         },
         {
-          type:"Glazing:Double",
+          type:"Vetri:Doppi",
           subtractfrom:0,
           width:0.8, height:1.4
         }
@@ -336,94 +336,94 @@ var config = {
       radiators: [{name:"Double Panel Convector 1000x400",heat50k:1273}]
     },
     
-   "landing":{
+   "ingresso":{
       temperature:18.0,
       width: 1.5, length: 4.4, height: 2.4,
       air_change_an_hour: 2.0,
       
       elements: [
         { 
-          type:"Wall:Internal", 
-          orientation:"South", 
+          type:"Parete:interna",
+          orientation:"S",
           width:1.5, height:2.4,
-          boundary:'study'
+          boundary:'studio'
         },
         { 
-          type:"Wall:Internal", 
-          orientation:"West", 
+          type:"Parete:interna",
+          orientation:"W",
           width:4.4, height:2.4,
-          boundary:'bed1'
+          boundary:'CameraLetto1'
         },
         { 
-          type:"Wall:Internal", 
-          orientation:"North", 
+          type:"Parete:interna",
+          orientation:"N",
           width:1.5, height:2.4,
-          boundary:'bathroom'
+          boundary:'bagno'
         },
         { 
-          type:"Wall:Party", 
-          orientation:"East", 
+          type:"Parete:condivisa",
+          orientation:"E",
           width:4.4, height:2.4,
-          boundary:'unheated'
+          boundary:boundaryType["unheated"]
         },
         { 
-          type:"Floor:First", 
+          type:"Piano:Primo",
           width:1.5, height:4.4,
           boundary:'hall'
         },
         { 
-          type:"Floor:Loft",
+          type:"Piano:Mansarda",
           width:1.5, height:4.4
         }
       ]
     },
     
-   "bathroom":{
+   "bagno":{
       temperature:22.0,
       width: 2.4, length: 3.3, height: 2.4,
       air_change_an_hour: 3.0,
       
       elements: [
         { 
-          type:"Wall:Internal", 
-          orientation:"South", 
+          type:"Parete:interna",
+          orientation:"S",
           width:2.4, height:2.4,
-          boundary:'landing'
+          boundary:'ingresso'
         },
         { 
-          type:"Wall:External", 
-          orientation:"West", 
+          type:"Parete:esterna",
+          orientation:"W",
           width:3.3, height:2.4
         },
         { 
-          type:"Wall:External", 
-          orientation:"North", 
+          type:"Parete:esterna",
+          orientation:"N",
           width:2.4, height:2.4
         },
         { 
-          type:"Wall:Party",
-          orientation:"East",
+          type:"Parete:condivisa",
+          orientation:"E",
           width:3.3, height:2.4,
-          boundary:'unheated'
+          boundary:boundaryType["unheated"]
         },
         { 
-          type:"Floor:First", 
+          type:"Piano:Primo",
           width:2.4, height:3.3,
-          boundary:'kitchen'
+          boundary:'cucina'
         },
         { 
-          type:"Floor:Loft",
+          type:"Piano:Mansarda",
           width:2.4, height:3.3
         },
         {
-          type:"Glazing:Double",
+          type:"Vetri:Doppi",
           subtractfrom:2,
           width:0.8, height:0.9
         }
       ],
       
       radiators: [
-          {name:"Double Panel Convector 800x600",heat50k:1430}
+          {name:"Doppio pannello a convezione 800x600",heat50k:1430}
       ]
     }
   }
