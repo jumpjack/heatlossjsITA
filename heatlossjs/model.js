@@ -1,7 +1,7 @@
 var dynamic_simulation_interval = false;
 config.solver_running = false;
 var app;
-
+immParete = [];
 
 calculate();
 startup();
@@ -47,13 +47,14 @@ function startup() {
 	                index++
 	            }
 	            if (last!=false) {
-	                config.element_type["Element "+index] = JSON.parse(JSON.stringify(last))
+	                config.element_type["Elemento "+index] = JSON.parse(JSON.stringify(last))
 	            } else {
-	                config.element_type["Element "+index] = {uvalue:0}
+	                config.element_type["Elemento "+index] = {uvalue:0}
 	            }
 	            calculate();
 	        },
 	        change_element_type_name: function(e,old_name) {
+console.log(e,old_name);
 	            var new_name = e.target.value;
 	            // Create new element with new name
 	            config.element_type[new_name] = config.element_type[old_name]
@@ -72,7 +73,7 @@ function startup() {
 	        add_new_room: function() {
 	            var n=0; for (var z in config.rooms) n++;
 	            config.rooms["Room "+n] = {
-	                temperature: 20.0, // Â°C
+	                temperature: 20.0, // °C
 					area: 0.0, // m2
 					height: 0.0, // m
 					air_change_an_hour: 1.0, // times (adimensional)
@@ -238,13 +239,17 @@ function calculate() {
         room.heat = 0
         room.kwh = 0
         room.A = 0
-        
+
+
+
         for (var i in room.elements) {
             var e = room.elements[i]
-            if (e.orientation==undefined) e.orientation = ""
+            if (e.orientation==undefined) e.orientation = "not_appl"
             
             // Boundary temperature
             if (e.boundary==undefined) e.boundary = boundaryType['external']
+
+
             if (config.T[e.boundary]!=undefined) {
                 e.temperature = config.T[e.boundary]
             } else if (config.rooms[e.boundary]!=undefined) {
@@ -279,10 +284,11 @@ function calculate() {
 
             e.deltaT = room.temperature - e.temperature
 
-            e.heat = e.wk * e.deltaT // potenza termica dispersa (power heat loss) = U * A * DeltaT  ( [W/m2K] * [m2] * [K] = [W])
+            e.heat = config.orientationContribution[e.orientation] * e.wk * e.deltaT // potenza termica dispersa (power heat loss) = A * U * DeltaT  ( [m2] * [W/m2K] *  [K] = [W])
 
-            e.kwh = e.wk * config.degreedays * 0.024
+            e.kwh = config.orientationContribution[e.orientation] * e.wk * config.degreedays * 0.024 // = * 24 ore / 1000
 
+console.log(z,e.boundary, e.uvalue, e.wk, e.deltaT, e.heat, e.kwh);
             if (e.boundary!=boundaryType['external'] && e.boundary!=boundaryType['ground']) e.kwh = 0
 
             room.wk += e.wk
@@ -290,13 +296,15 @@ function calculate() {
             room.kwh += e.kwh
             room.A += e.A
 
-
             if (e.boundary==boundaryType['external']) config.house.wk += e.wk
             else if (e.boundary==boundaryType['unheated']) config.house.wk += e.wk
             else if (e.boundary==boundaryType['ground']) config.house.wk += e.wk
             else {
                 config.house.internal_heat_balance += e.heat  
-            }    
+            }
+
+immParete[i+z] = "<img src='" +  localElementImage[e.type]  + ".png' width=50>";
+
         }
 
         // ----------------------------------------------------------------------------------------
@@ -317,7 +325,7 @@ function calculate() {
         room.infiltration_heat = infiltration_wk * deltaT // [W]/[K] * [K] = [W]
         room.heat += room.infiltration_heat
         
-        var infiltration_kwh = infiltration_wk * config.degreedays * 0.024 /// ???
+        var infiltration_kwh = infiltration_wk * config.degreedays * 0.024 // degreedays = K * days;  24 = hours/day; obtained value is in Wh, but stored in variable in kWh, hence "/1000"; 24/1000 = 0.024
         room.kwh += infiltration_kwh
         
         // ----------------------------------------------------------------------------------------
@@ -377,6 +385,8 @@ function calculate() {
         
         if (room.energy==undefined) room.energy = room.temperature * config.JK;
         room.energy += ( -room.heat + room.total_heat_output) * 0.01
+
+room.schema = "Test_"+z; // debug
     }
     
     // Heat pump model
